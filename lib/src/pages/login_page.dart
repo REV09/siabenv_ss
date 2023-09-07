@@ -65,10 +65,10 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               SizedBox(
-                width: responsive.wp(60),
+                width: responsive.wp(45),
                 height: responsive.hp(30),
                 child: Image.asset(
-                  "lib/src/pages/images/logo_normal.jpeg",
+                  "lib/src/pages/images/logo_normal.png",
                   fit: BoxFit.fill,
                 ),
               ),

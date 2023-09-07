@@ -20,6 +20,25 @@ class GeneralInformationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card();
+    Column cardContent = Column(
+      children: <Widget>[
+        const Text("Nombre"),
+        Text(fullName!),
+        const Text("Correo electronico"),
+        Text(email!),
+        const Text("Correo electronico alternativo"),
+        Text(alternativeEmail!),
+        const Text("CURP"),
+        Text(curp!),
+        const Text("Fecha de nacimiento"),
+        Text(bornDate!),
+        const Text("Genero"),
+        Text(gender!),
+      ],
+    );
+    return Card(
+      color: Colors.white,
+      child: cardContent,
+    );
   }
 }

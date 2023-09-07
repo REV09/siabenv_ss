@@ -17,7 +17,8 @@ class _PrincipalPage extends State<PrincipalPage> {
             currentPageIndex = index;
           });
         },
-        indicatorColor: Colors.blue.shade500,
+        indicatorColor: Colors.redAccent.shade700,
+        backgroundColor: Colors.grey.shade200,
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(
@@ -39,9 +40,9 @@ class _PrincipalPage extends State<PrincipalPage> {
           child: const Text("Notificaciones y avisos"),
         ),
         Container(
-          color: Colors.teal.shade900,
+          color: null,
           alignment: Alignment.center,
-          child: const Text("Notificaciones y avisos"),
+          child: const Text("Datos generales"),
         )
       ][currentPageIndex],
     );
