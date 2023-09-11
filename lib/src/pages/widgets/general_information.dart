@@ -1,44 +1,51 @@
 import 'package:flutter/material.dart';
 
 class GeneralInformationCard extends StatelessWidget {
-  final String? fullName;
-  final String? email;
-  final String? alternativeEmail;
-  final String? curp;
-  final String? bornDate;
-  final String? gender;
+  final List<String>? titles;
+  final List<String>? information;
+  final ShapeBorder? shapeBorder;
 
   const GeneralInformationCard({
     Key? key,
-    this.fullName,
-    this.email,
-    this.alternativeEmail,
-    this.curp,
-    this.bornDate,
-    this.gender,
+    this.titles,
+    this.information,
+    this.shapeBorder,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    TextStyle titleStyle = const TextStyle(
+      fontSize: 23,
+      fontWeight: FontWeight.bold,
+    );
+
+    TextStyle informationStyle = const TextStyle(
+      fontSize: 18,
+    );
+
+    List<Widget> informationCardContent = List.empty(growable: true);
+    informationCardContent.add(const SizedBox(height: 15));
+
+    for (int i = 0; i < titles!.length; i++) {
+      informationCardContent.add(Text(titles!.elementAt(i), style: titleStyle));
+      informationCardContent
+          .add(Text(information!.elementAt(i), style: informationStyle));
+      informationCardContent.add(const SizedBox(height: 10));
+    }
+
     Column cardContent = Column(
-      children: <Widget>[
-        const Text("Nombre"),
-        Text(fullName!),
-        const Text("Correo electronico"),
-        Text(email!),
-        const Text("Correo electronico alternativo"),
-        Text(alternativeEmail!),
-        const Text("CURP"),
-        Text(curp!),
-        const Text("Fecha de nacimiento"),
-        Text(bornDate!),
-        const Text("Genero"),
-        Text(gender!),
-      ],
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: informationCardContent,
+    );
+
+    Row rowAlingment = Row(
+      children: <Widget>[const SizedBox(width: 10), cardContent],
     );
     return Card(
       color: Colors.white,
-      child: cardContent,
+      shadowColor: Colors.black,
+      shape: shapeBorder,
+      child: rowAlingment,
     );
   }
 }
