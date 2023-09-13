@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mibenv/src/pages/home_page.dart';
 import 'package:mibenv/src/pages/widgets/general_information_card.dart';
 import 'package:mibenv/src/pages/widgets/notifications_card.dart';
 
@@ -98,6 +99,11 @@ class _PrincipalPage extends State<PrincipalPage> {
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
           NavigationDestination(
+            selectedIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: "Inicio",
+          ),
+          NavigationDestination(
             selectedIcon: Icon(Icons.notifications_sharp),
             icon: Icon(Icons.notifications_outlined),
             label: "Notificaciones y avisos",
@@ -110,6 +116,7 @@ class _PrincipalPage extends State<PrincipalPage> {
         ],
       ),
       body: <Widget>[
+        HomePage(),
         Container(
           color: Colors.indigo.shade800,
           alignment: Alignment.center,
