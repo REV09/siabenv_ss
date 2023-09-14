@@ -6,6 +6,7 @@ class OptionButton extends StatelessWidget {
   final String textButton;
   final IconData? icon;
   final double? iconSize;
+  final BoxDecoration boxDecoration;
 
   const OptionButton({
     Key? key,
@@ -14,41 +15,40 @@ class OptionButton extends StatelessWidget {
     required this.textButton,
     this.icon,
     this.iconSize,
+    required this.boxDecoration,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      height: height,
-      child: ElevatedButton(
-        onPressed: () {},
-        style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            backgroundColor: Colors.green.shade700),
-        child: Column(
-          children: <Widget>[
-            const SizedBox(
-              height: 20,
-            ),
-            SizedBox(
-              child: Icon(
-                icon!,
-                size: iconSize,
-                color: Colors.white,
+    return DecoratedBox(
+      decoration: boxDecoration,
+      child: InkWell(
+        onTap: () {},
+        child: SizedBox(
+          width: width,
+          height: height,
+          child: Column(
+            children: <Widget>[
+              const SizedBox(
+                height: 20,
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Text(
-              textButton,
-              textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.white),
-            )
-          ],
+              SizedBox(
+                child: Icon(
+                  icon!,
+                  size: iconSize,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Text(
+                textButton,
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.white),
+              )
+            ],
+          ),
         ),
       ),
     );
