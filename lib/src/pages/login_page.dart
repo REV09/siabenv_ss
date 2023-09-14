@@ -37,10 +37,10 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     TextStyle mibenvStyle = TextStyle(
-      color: Colors.blue.shade900,
-      fontWeight: FontWeight.bold,
-      fontSize: responsive.hp(6),
-    );
+        color: const Color.fromRGBO(0, 60, 112, 1.0),
+        fontWeight: FontWeight.bold,
+        fontSize: responsive.hp(6),
+        fontFamily: "Bengasi Bold");
 
     IconButton showHidePasswordButton = IconButton(
       onPressed: () {
