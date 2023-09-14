@@ -6,6 +6,8 @@ import 'package:mibenv/src/pages/widgets/notifications_card.dart';
 import '../utils/responsive.dart';
 
 class PrincipalPage extends StatefulWidget {
+  const PrincipalPage({super.key});
+
   @override
   State<PrincipalPage> createState() => _PrincipalPage();
 }
@@ -116,7 +118,7 @@ class _PrincipalPage extends State<PrincipalPage> {
         ],
       ),
       body: <Widget>[
-        HomePage(),
+        const HomePage(),
         Container(
           color: Colors.indigo.shade800,
           alignment: Alignment.center,

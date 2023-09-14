@@ -3,6 +3,8 @@ import 'package:mibenv/src/pages/widgets/option_button.dart';
 import 'package:mibenv/src/utils/responsive.dart';
 
 class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
   @override
   State<HomePage> createState() => _HomePage();
 }
@@ -10,12 +12,22 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    TextStyle titleStyle = TextStyle(
+        fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue.shade700);
+
     Responsive responsive = Responsive(context);
     return Center(
       child: Column(
         children: [
           SizedBox(
             height: responsive.hp(10),
+          ),
+          Text(
+            "Pagina principal",
+            style: titleStyle,
+          ),
+          SizedBox(
+            height: responsive.hp(2.5),
           ),
           Row(
             children: <Widget>[
