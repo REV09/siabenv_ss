@@ -133,7 +133,7 @@ class _HomePage extends State<HomePage> {
       child: Column(
         children: [
           SizedBox(
-            height: responsive.hp(10),
+            height: responsive.hp(6),
           ),
           Text(
             "Pagina principal",
@@ -145,7 +145,7 @@ class _HomePage extends State<HomePage> {
           Row(
             children: <Widget>[
               SizedBox(
-                width: responsive.wp(5),
+                width: responsive.wp(10),
               ),
               Column(
                 children: <Widget>[
