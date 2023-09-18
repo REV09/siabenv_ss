@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mibenv/src/pages/general_information_page.dart';
 import 'package:mibenv/src/pages/home_page.dart';
-import 'package:mibenv/src/pages/widgets/general_information_card.dart';
 import 'package:mibenv/src/pages/widgets/notifications_card.dart';
 
 import '../utils/responsive.dart';
@@ -17,38 +17,6 @@ class _PrincipalPage extends State<PrincipalPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> personalInformationTitles = [
-      "Nombre",
-      "Correo",
-      "Correo alternativo",
-      "CURP",
-      "Fecha de nacimiento",
-      "Genero",
-    ];
-
-    List<String> personalInformationData = [
-      "Nombre completo de prueba",
-      "alguienexample@ejemplo.com",
-      "prueba@example.com.mx",
-      "ABCD123456EFGHIJK0",
-      "00/00/0000",
-      "Genero",
-    ];
-
-    List<String> academicInformationTitles = [
-      "Tutor academico",
-      "Licenciatura",
-      "Area",
-      "Nivel",
-    ];
-
-    List<String> academicInformationData = [
-      "Nombre de tutor de prueba",
-      "Nombre de programa de prueba",
-      "Educacion especial",
-      "Licenciatura",
-    ];
-
     String information =
         "Descripcion de prueba de\ninformacion para la tarjeta "
         "de\nnotificaciones sobre eventos y\navisos de la BENV";
@@ -56,12 +24,6 @@ class _PrincipalPage extends State<PrincipalPage> {
     String title = "Evento de prueba";
 
     Responsive responsive = Responsive(context);
-
-    TextStyle titleStyle = TextStyle(
-      fontSize: 25,
-      fontWeight: FontWeight.bold,
-      color: Colors.blue.shade900,
-    );
 
     List<Widget> eventsList = List.empty(growable: true);
     eventsList.add(SizedBox(height: responsive.hp(8)));
@@ -124,52 +86,7 @@ class _PrincipalPage extends State<PrincipalPage> {
             ),
           ),
         ),
-        Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(height: responsive.hp(5)),
-                Text("Informacion personal", style: titleStyle),
-                SizedBox(height: responsive.hp(1)),
-                SizedBox(
-                  width: responsive.wp(90),
-                  height: responsive.hp(67),
-                  child: GeneralInformationCard(
-                    titles: personalInformationTitles,
-                    information: personalInformationData,
-                    shapeBorder: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      side: const BorderSide(
-                        color: Colors.blue,
-                        width: 3,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 30),
-                Text("Informacion academica", style: titleStyle),
-                SizedBox(height: responsive.hp(1)),
-                SizedBox(
-                  width: responsive.wp(90),
-                  height: responsive.hp(47),
-                  child: GeneralInformationCard(
-                    titles: academicInformationTitles,
-                    information: academicInformationData,
-                    shapeBorder: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      side: const BorderSide(
-                        color: Colors.blue,
-                        width: 3,
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: responsive.hp(5)),
-              ],
-            ),
-          ),
-        )
+        GeneralInformationPage(),
       ][currentPageIndex],
     );
   }

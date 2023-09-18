@@ -260,7 +260,7 @@ class _HomePage extends State<HomePage> {
                 children: <Widget>[
                   OptionButton(
                     width: responsive.wp(30),
-                    height: responsive.hp(28),
+                    height: responsive.hp(32),
                     icon: Icons.history_toggle_off_outlined,
                     iconSize: responsive.dp(5),
                     textButton: "Horario de clases",
@@ -271,7 +271,7 @@ class _HomePage extends State<HomePage> {
                   ),
                   OptionButton(
                     width: responsive.wp(30),
-                    height: responsive.hp(30),
+                    height: responsive.hp(32),
                     icon: Icons.notifications_sharp,
                     iconSize: responsive.dp(5),
                     textButton: "Notificaciones y avisos",
@@ -286,7 +286,7 @@ class _HomePage extends State<HomePage> {
                 children: <Widget>[
                   OptionButton(
                     width: responsive.wp(28),
-                    height: responsive.hp(26),
+                    height: responsive.hp(30),
                     icon: Icons.person,
                     iconSize: responsive.dp(5),
                     textButton: "Datos generales",
@@ -297,7 +297,7 @@ class _HomePage extends State<HomePage> {
                   ),
                   OptionButton(
                     width: responsive.wp(28),
-                    height: responsive.hp(25),
+                    height: responsive.hp(30),
                     icon: Icons.incomplete_circle,
                     iconSize: responsive.dp(5),
                     textButton: "Avance academico",
