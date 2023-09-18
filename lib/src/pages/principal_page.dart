@@ -37,19 +37,15 @@ class _PrincipalPage extends State<PrincipalPage> {
 
     List<String> academicInformationTitles = [
       "Tutor academico",
-      "Programa",
+      "Licenciatura",
       "Area",
-      "Facultad",
-      "Campus",
       "Nivel",
     ];
 
     List<String> academicInformationData = [
       "Nombre de tutor de prueba",
       "Nombre de programa de prueba",
-      "Area de prueba",
-      "Escuela normal veracruzana",
-      "Xalapa",
+      "Educacion especial",
       "Licenciatura",
     ];
 
@@ -138,7 +134,7 @@ class _PrincipalPage extends State<PrincipalPage> {
                 SizedBox(height: responsive.hp(1)),
                 SizedBox(
                   width: responsive.wp(90),
-                  height: responsive.hp(54),
+                  height: responsive.hp(56),
                   child: GeneralInformationCard(
                     titles: personalInformationTitles,
                     information: personalInformationData,
@@ -156,7 +152,7 @@ class _PrincipalPage extends State<PrincipalPage> {
                 SizedBox(height: responsive.hp(1)),
                 SizedBox(
                   width: responsive.wp(90),
-                  height: responsive.hp(54),
+                  height: responsive.hp(40),
                   child: GeneralInformationCard(
                     titles: academicInformationTitles,
                     information: academicInformationData,
