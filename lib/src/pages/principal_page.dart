@@ -134,7 +134,7 @@ class _PrincipalPage extends State<PrincipalPage> {
                 SizedBox(height: responsive.hp(1)),
                 SizedBox(
                   width: responsive.wp(90),
-                  height: responsive.hp(56),
+                  height: responsive.hp(67),
                   child: GeneralInformationCard(
                     titles: personalInformationTitles,
                     information: personalInformationData,
@@ -152,7 +152,7 @@ class _PrincipalPage extends State<PrincipalPage> {
                 SizedBox(height: responsive.hp(1)),
                 SizedBox(
                   width: responsive.wp(90),
-                  height: responsive.hp(40),
+                  height: responsive.hp(47),
                   child: GeneralInformationCard(
                     titles: academicInformationTitles,
                     information: academicInformationData,

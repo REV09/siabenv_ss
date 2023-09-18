@@ -130,6 +130,117 @@ class _HomePage extends State<HomePage> {
     );
 
     return Center(
+      child: OrientationBuilder(
+        builder: (context, orientation) => orientation == Orientation.portrait
+            ? portraitView(
+                responsive,
+                titleStyle,
+                decoration,
+                decorationButton2,
+                decorationButton3,
+                decorationButton4,
+              )
+            : landscapeView(
+                responsive,
+                titleStyle,
+                decoration,
+                decorationButton2,
+                decorationButton3,
+                decorationButton4,
+              ),
+      ),
+    );
+  }
+
+  Column portraitView(
+    Responsive responsive,
+    TextStyle titleStyle,
+    BoxDecoration decoration,
+    BoxDecoration decorationButton2,
+    BoxDecoration decorationButton3,
+    BoxDecoration decorationButton4,
+  ) {
+    return Column(
+      children: [
+        SizedBox(
+          height: responsive.hp(6),
+        ),
+        Text(
+          "Pagina principal",
+          style: titleStyle,
+        ),
+        SizedBox(
+          height: responsive.hp(2.5),
+        ),
+        Row(
+          children: <Widget>[
+            SizedBox(
+              width: responsive.wp(10),
+            ),
+            Column(
+              children: <Widget>[
+                OptionButton(
+                  width: responsive.wp(35),
+                  height: responsive.hp(20),
+                  icon: Icons.history_toggle_off_outlined,
+                  iconSize: responsive.dp(5),
+                  textButton: "Horario de clases",
+                  boxDecoration: decoration,
+                ),
+                SizedBox(
+                  height: responsive.hp(2),
+                ),
+                OptionButton(
+                  width: responsive.wp(35),
+                  height: responsive.hp(20),
+                  icon: Icons.notifications_sharp,
+                  iconSize: responsive.dp(5),
+                  textButton: "Notificaciones y avisos",
+                  boxDecoration: decorationButton2,
+                ),
+              ],
+            ),
+            SizedBox(
+              width: responsive.wp(9),
+            ),
+            Column(
+              children: <Widget>[
+                OptionButton(
+                  width: responsive.wp(35),
+                  height: responsive.hp(18),
+                  icon: Icons.person,
+                  iconSize: responsive.dp(5),
+                  textButton: "Datos generales",
+                  boxDecoration: decorationButton3,
+                ),
+                SizedBox(
+                  height: responsive.hp(2),
+                ),
+                OptionButton(
+                  width: responsive.wp(35),
+                  height: responsive.hp(21),
+                  icon: Icons.incomplete_circle,
+                  iconSize: responsive.dp(5),
+                  textButton: "Avance academico",
+                  boxDecoration: decorationButton4,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget landscapeView(
+    Responsive responsive,
+    TextStyle titleStyle,
+    BoxDecoration decoration,
+    BoxDecoration decorationButton2,
+    BoxDecoration decorationButton3,
+    BoxDecoration decorationButton4,
+  ) {
+    return SingleChildScrollView(
       child: Column(
         children: [
           SizedBox(
@@ -143,14 +254,12 @@ class _HomePage extends State<HomePage> {
             height: responsive.hp(2.5),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(
-                width: responsive.wp(10),
-              ),
               Column(
                 children: <Widget>[
                   OptionButton(
-                    width: responsive.wp(35),
+                    width: responsive.wp(30),
                     height: responsive.hp(28),
                     icon: Icons.history_toggle_off_outlined,
                     iconSize: responsive.dp(5),
@@ -158,11 +267,11 @@ class _HomePage extends State<HomePage> {
                     boxDecoration: decoration,
                   ),
                   SizedBox(
-                    height: responsive.hp(2),
+                    height: responsive.hp(8),
                   ),
                   OptionButton(
-                    width: responsive.wp(35),
-                    height: responsive.hp(16),
+                    width: responsive.wp(30),
+                    height: responsive.hp(30),
                     icon: Icons.notifications_sharp,
                     iconSize: responsive.dp(5),
                     textButton: "Notificaciones y avisos",
@@ -171,23 +280,23 @@ class _HomePage extends State<HomePage> {
                 ],
               ),
               SizedBox(
-                width: responsive.wp(9),
+                width: responsive.hp(9),
               ),
               Column(
                 children: <Widget>[
                   OptionButton(
-                    width: responsive.wp(35),
-                    height: responsive.hp(18),
+                    width: responsive.wp(28),
+                    height: responsive.hp(26),
                     icon: Icons.person,
                     iconSize: responsive.dp(5),
                     textButton: "Datos generales",
                     boxDecoration: decorationButton3,
                   ),
                   SizedBox(
-                    height: responsive.hp(2),
+                    height: responsive.hp(8),
                   ),
                   OptionButton(
-                    width: responsive.wp(35),
+                    width: responsive.wp(28),
                     height: responsive.hp(25),
                     icon: Icons.incomplete_circle,
                     iconSize: responsive.dp(5),
