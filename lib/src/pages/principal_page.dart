@@ -86,7 +86,7 @@ class _PrincipalPage extends State<PrincipalPage> {
             ),
           ),
         ),
-        GeneralInformationPage(),
+        const GeneralInformationPage(),
       ][currentPageIndex],
     );
   }

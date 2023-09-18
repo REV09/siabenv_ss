@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mibenv/src/pages/widgets/general_information_card.dart';
 
 import '../utils/responsive.dart';
 
 class GeneralInformationPage extends StatelessWidget {
+  const GeneralInformationPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     List<String> personalInformationTitles = [
