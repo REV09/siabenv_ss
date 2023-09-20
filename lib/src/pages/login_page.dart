@@ -22,25 +22,47 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     Responsive responsive = Responsive(context);
 
-    TextStyle loginButton = TextStyle(
+    TextStyle loginButtonPortrait = TextStyle(
       color: Colors.white,
       fontWeight: FontWeight.bold,
       fontSize: responsive.hp(2.4),
     );
 
-    ButtonStyle styleLoginButton = ElevatedButton.styleFrom(
+    TextStyle loginButtonLandscape = TextStyle(
+      color: Colors.white,
+      fontWeight: FontWeight.bold,
+      fontSize: responsive.hp(4.6),
+    );
+
+    ButtonStyle styleLoginButtonPortrait = ElevatedButton.styleFrom(
       backgroundColor: Colors.green.shade700,
       fixedSize: Size(
-        responsive.dp(20),
-        responsive.wp(0),
+        responsive.wp(46),
+        responsive.hp(6.5),
       ),
     );
 
-    TextStyle mibenvStyle = TextStyle(
-        color: const Color.fromRGBO(0, 60, 112, 1.0),
-        fontWeight: FontWeight.bold,
-        fontSize: responsive.hp(6),
-        fontFamily: "Bengasi Bold");
+    ButtonStyle styleLoginButtonLandscape = ElevatedButton.styleFrom(
+      backgroundColor: Colors.green.shade700,
+      fixedSize: Size(
+        responsive.wp(25),
+        responsive.hp(0),
+      ),
+    );
+
+    TextStyle siabenvStylePortrait = TextStyle(
+      color: const Color.fromRGBO(0, 60, 112, 1.0),
+      fontWeight: FontWeight.bold,
+      fontSize: responsive.hp(6),
+      fontFamily: "Bengasi Bold",
+    );
+
+    TextStyle siabenvStyleLandscape = TextStyle(
+      color: const Color.fromRGBO(0, 60, 112, 1.0),
+      fontWeight: FontWeight.bold,
+      fontSize: responsive.hp(12),
+      fontFamily: "Bengasi Bold",
+    );
 
     IconButton showHidePasswordButton = IconButton(
       onPressed: () {
@@ -60,85 +82,210 @@ class _LoginPageState extends State<LoginPage> {
 
     return Scaffold(
       body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+        child: OrientationBuilder(
+          builder: (context, orientation) => orientation == Orientation.portrait
+              ? portraitView(
+                  responsive,
+                  siabenvStylePortrait,
+                  showHidePasswordButton,
+                  context,
+                  styleLoginButtonPortrait,
+                  loginButtonPortrait,
+                )
+              : landscapeView(
+                  responsive,
+                  siabenvStyleLandscape,
+                  showHidePasswordButton,
+                  context,
+                  styleLoginButtonLandscape,
+                  loginButtonLandscape,
+                ),
+        ),
+      ),
+    );
+  }
+
+  SingleChildScrollView portraitView(
+      Responsive responsive,
+      TextStyle mibenvStyle,
+      IconButton showHidePasswordButton,
+      BuildContext context,
+      ButtonStyle styleLoginButton,
+      TextStyle loginButton) {
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          SizedBox(
+            width: responsive.wp(45),
+            height: responsive.hp(30),
+            child: Image.asset(
+              "lib/src/pages/images/logo_normal.png",
+              fit: BoxFit.fill,
+            ),
+          ),
+          Text(
+            "SIABENV",
+            style: mibenvStyle,
+          ),
+          SizedBox(
+            height: responsive.hp(1),
+          ),
+          SizedBox(
+            width: responsive.wp(85),
+            child: Form(
+              key: _loginKey,
+              child: Column(
+                children: <Widget>[
+                  InputText(
+                    fontSize: responsive.hp(2),
+                    keyboardType: TextInputType.name,
+                    label: "Usuario",
+                    helperText: "CURP ej: ABCD123456EFGHIJK",
+                  ),
+                  SizedBox(
+                    height: responsive.hp(5),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Expanded(
+                        child: InputText(
+                          fontSize: responsive.hp(2),
+                          keyboardType: TextInputType.visiblePassword,
+                          label: "Contraseña",
+                          obscureText: obscurePassword,
+                          borderEnabled: true,
+                          validator: (text) {
+                            if (text!.length < 8) {
+                              return "Ingrese un usuario valido";
+                            } else {
+                              return null;
+                            }
+                          },
+                          suffixIcon: showHidePasswordButton,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: responsive.hp(5),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const PrincipalPage(),
+                        ),
+                      );
+                    },
+                    style: styleLoginButton,
+                    child: Text(
+                      "Iniciar sesion",
+                      style: loginButton,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget landscapeView(
+      Responsive responsive,
+      TextStyle mibenvStyle,
+      IconButton showHidePasswordButton,
+      BuildContext context,
+      ButtonStyle styleLoginButton,
+      TextStyle loginButton) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                width: responsive.wp(45),
-                height: responsive.hp(30),
+                width: responsive.wp(30),
+                height: responsive.hp(85),
                 child: Image.asset(
                   "lib/src/pages/images/logo_normal.png",
                   fit: BoxFit.fill,
                 ),
               ),
-              Text(
-                "SIABENV",
-                style: mibenvStyle,
-              ),
               SizedBox(
-                height: responsive.hp(1),
+                width: responsive.hp(10),
               ),
-              SizedBox(
-                width: responsive.wp(85),
-                child: Form(
-                  key: _loginKey,
-                  child: Column(
-                    children: <Widget>[
-                      InputText(
-                        fontSize: responsive.hp(2),
-                        keyboardType: TextInputType.name,
-                        label: "Usuario",
-                        helperText: "CURP ej: ABCD123456EFGHIJK",
-                      ),
-                      SizedBox(
-                        height: responsive.hp(5),
-                      ),
-                      Row(
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    "SIABENV",
+                    style: mibenvStyle,
+                  ),
+                  SizedBox(
+                    width: responsive.wp(50),
+                    child: Form(
+                      key: _loginKey,
+                      child: Column(
                         children: <Widget>[
-                          Expanded(
-                            child: InputText(
-                              fontSize: responsive.hp(2),
-                              keyboardType: TextInputType.visiblePassword,
-                              label: "Contraseña",
-                              obscureText: obscurePassword,
-                              borderEnabled: true,
-                              validator: (text) {
-                                if (text!.length < 8) {
-                                  return "Ingrese un usuario valido";
-                                } else {
-                                  return null;
-                                }
-                              },
-                              suffixIcon: showHidePasswordButton,
+                          InputText(
+                            fontSize: responsive.wp(1.8),
+                            keyboardType: TextInputType.name,
+                            label: "Usuario",
+                            helperText: "CURP ej: ABCD123456EFGHIJK",
+                          ),
+                          SizedBox(
+                            height: responsive.wp(2.3),
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: InputText(
+                                  fontSize: responsive.wp(1.8),
+                                  keyboardType: TextInputType.visiblePassword,
+                                  label: "Contraseña",
+                                  obscureText: obscurePassword,
+                                  borderEnabled: true,
+                                  validator: (text) {
+                                    if (text!.length < 8) {
+                                      return "Ingrese un usuario valido";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  suffixIcon: showHidePasswordButton,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: responsive.hp(4),
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const PrincipalPage(),
+                                ),
+                              );
+                            },
+                            style: styleLoginButton,
+                            child: Text(
+                              "Iniciar sesion",
+                              style: loginButton,
                             ),
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: responsive.hp(5),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const PrincipalPage(),
-                            ),
-                          );
-                        },
-                        style: styleLoginButton,
-                        child: Text(
-                          "Iniciar sesion",
-                          style: loginButton,
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }
