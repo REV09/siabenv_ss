@@ -34,10 +34,18 @@ class _LoginPageState extends State<LoginPage> {
       fontSize: responsive.hp(4.6),
     );
 
-    ButtonStyle styleLoginButton = ElevatedButton.styleFrom(
+    ButtonStyle styleLoginButtonPortrait = ElevatedButton.styleFrom(
       backgroundColor: Colors.green.shade700,
       fixedSize: Size(
-        responsive.wp(36),
+        responsive.wp(46),
+        responsive.hp(6.5),
+      ),
+    );
+
+    ButtonStyle styleLoginButtonLandscape = ElevatedButton.styleFrom(
+      backgroundColor: Colors.green.shade700,
+      fixedSize: Size(
+        responsive.wp(25),
         responsive.hp(0),
       ),
     );
@@ -81,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                   siabenvStylePortrait,
                   showHidePasswordButton,
                   context,
-                  styleLoginButton,
+                  styleLoginButtonPortrait,
                   loginButtonPortrait,
                 )
               : landscapeView(
@@ -89,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                   siabenvStyleLandscape,
                   showHidePasswordButton,
                   context,
-                  styleLoginButton,
+                  styleLoginButtonLandscape,
                   loginButtonLandscape,
                 ),
         ),
