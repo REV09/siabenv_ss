@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mibenv/src/pages/general_information_page.dart';
 import 'package:mibenv/src/pages/home_page.dart';
-import 'package:mibenv/src/pages/widgets/notifications_card.dart';
+import 'package:mibenv/src/pages/notifications_page.dart';
 
-import '../utils/responsive.dart';
+//import '../utils/responsive.dart';
 
 class PrincipalPage extends StatefulWidget {
   const PrincipalPage({super.key});
@@ -17,35 +17,7 @@ class _PrincipalPage extends State<PrincipalPage> {
 
   @override
   Widget build(BuildContext context) {
-    String information =
-        "Descripcion de prueba de\ninformacion para la tarjeta "
-        "de\nnotificaciones sobre eventos y\navisos de la BENV";
-
-    String title = "Evento de prueba";
-
-    Responsive responsive = Responsive(context);
-
-    List<Widget> eventsList = List.empty(growable: true);
-    eventsList.add(SizedBox(height: responsive.hp(8)));
-    for (int i = 0; i < 5; i++) {
-      eventsList.add(SizedBox(
-        width: responsive.wp(95),
-        height: responsive.hp(27),
-        child: NotificationCard(
-          information: information,
-          title: title,
-          shapeBorder: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-            side: const BorderSide(
-              color: Colors.blue,
-              width: 3,
-            ),
-          ),
-        ),
-      ));
-      eventsList.add(SizedBox(height: responsive.hp(2)));
-    }
-    eventsList.add(SizedBox(height: responsive.hp(5)));
+    //Responsive responsive = Responsive(context);
 
     return Scaffold(
       bottomNavigationBar: NavigationBar(
@@ -78,13 +50,9 @@ class _PrincipalPage extends State<PrincipalPage> {
       body: <Widget>[
         const HomePage(),
         Container(
-          color: Colors.indigo.shade800,
+          color: Colors.grey.shade400,
           alignment: Alignment.center,
-          child: SingleChildScrollView(
-            child: Column(
-              children: eventsList,
-            ),
-          ),
+          child: notificationsPage(),
         ),
         const GeneralInformationPage(),
       ][currentPageIndex],

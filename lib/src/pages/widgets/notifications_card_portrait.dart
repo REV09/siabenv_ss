@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-class NotificationCard extends StatelessWidget {
+class NotificationCardPortrait extends StatelessWidget {
   final String? title;
   final String? information;
   final ShapeBorder? shapeBorder;
+  final double width;
 
-  const NotificationCard({
+  const NotificationCardPortrait({
     Key? key,
     this.title,
     this.information,
     this.shapeBorder,
+    required this.width,
   }) : super(key: key);
 
   @override
@@ -26,24 +28,30 @@ class NotificationCard extends StatelessWidget {
     Column cardContent = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(title!, style: titleStyle),
-        Text(information!, style: informationStyle),
-        const SizedBox(height: 10),
+        Text(
+          title!,
+          style: titleStyle,
+        ),
+        Container(
+          width: width,
+          child: Text(
+            information!,
+            style: informationStyle,
+            overflow: TextOverflow.clip,
+            softWrap: true,
+          ),
+        ),
       ],
     );
     Column eventHour = Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const SizedBox(height: 15),
         const Icon(
           Icons.access_time,
-          size: 60,
+          size: 50,
         ),
-        const SizedBox(height: 15),
         Text("14:00", style: informationStyle),
-        const SizedBox(height: 15),
-        Text("16:00", style: informationStyle),
         const SizedBox(height: 10),
+        Text("16:00", style: informationStyle),
       ],
     );
 
@@ -57,9 +65,8 @@ class NotificationCard extends StatelessWidget {
     );
 
     Column dateColumn = Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
+        const SizedBox(height: 10),
         Text(
           "Lunes 22 de enero de 2024",
           style: titleStyle,
@@ -67,9 +74,10 @@ class NotificationCard extends StatelessWidget {
         rowAlingment,
       ],
     );
+
     return Card(
-      color: Colors.white,
       shadowColor: Colors.black,
+      elevation: 15,
       shape: shapeBorder,
       child: dateColumn,
     );

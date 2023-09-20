@@ -37,8 +37,8 @@ class _LoginPageState extends State<LoginPage> {
     ButtonStyle styleLoginButton = ElevatedButton.styleFrom(
       backgroundColor: Colors.green.shade700,
       fixedSize: Size(
-        responsive.dp(20),
-        responsive.wp(0),
+        responsive.wp(36),
+        responsive.hp(0),
       ),
     );
 
