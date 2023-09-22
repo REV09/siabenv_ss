@@ -5,14 +5,19 @@ class NotificationCardPortrait extends StatelessWidget {
   final String? information;
   final ShapeBorder? shapeBorder;
   final double width;
+  int? maxLines;
 
-  const NotificationCardPortrait({
+  NotificationCardPortrait({
     Key? key,
     this.title,
     this.information,
     this.shapeBorder,
     required this.width,
   }) : super(key: key);
+
+  void setMaxLines(int? maxLines) {
+    this.maxLines = maxLines;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +44,7 @@ class NotificationCardPortrait extends StatelessWidget {
             style: informationStyle,
             overflow: TextOverflow.clip,
             softWrap: true,
+            maxLines: maxLines,
           ),
         ),
       ],
@@ -57,9 +63,9 @@ class NotificationCardPortrait extends StatelessWidget {
 
     Row rowAlingment = Row(
       children: <Widget>[
-        const SizedBox(width: 15),
+        const SizedBox(width: 12),
         eventHour,
-        const SizedBox(width: 15),
+        const SizedBox(width: 12),
         cardContent
       ],
     );

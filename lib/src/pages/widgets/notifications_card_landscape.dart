@@ -5,14 +5,19 @@ class NotificationCardLandscape extends StatelessWidget {
   final String? information;
   final ShapeBorder? shapeBorder;
   final double width;
+  int? maxLines;
 
-  const NotificationCardLandscape({
+  NotificationCardLandscape({
     Key? key,
     this.title,
     this.information,
     this.shapeBorder,
     required this.width,
   }) : super(key: key);
+
+  void setMaxLines(int? maxLines) {
+    this.maxLines = maxLines;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +49,14 @@ class NotificationCardLandscape extends StatelessWidget {
         dateRow,
         Text(title!, style: titleStyle),
         Container(
+          padding: const EdgeInsets.fromLTRB(8, 0, 5, 0),
           width: width,
           child: Text(
             information!,
-            textAlign: TextAlign.center,
             style: informationStyle,
             overflow: TextOverflow.clip,
             softWrap: true,
+            maxLines: maxLines,
           ),
         ),
       ],
