@@ -52,7 +52,7 @@ class _PrincipalPage extends State<PrincipalPage> {
         Container(
           color: Colors.grey.shade400,
           alignment: Alignment.center,
-          child: notificationsPage(),
+          child: const NotificationsPage(),
         ),
         const GeneralInformationPage(),
       ][currentPageIndex],

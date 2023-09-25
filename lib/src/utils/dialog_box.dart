@@ -15,68 +15,74 @@ class DetailsEventPortrait {
     this.notificationCardLandscape,
   });
 
-  showPortraitMode(BuildContext context) {
-    notificationCardPortrait!.setMaxLines(null);
+  show(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => Dialog(
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                width: responsive.wp(90),
-                height: responsive.hp(60),
-                child: notificationCardPortrait,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text("Cerrar"),
-                    ),
-                  ),
-                ],
-              ),
-            ],
+        child: Container(
+          child: OrientationBuilder(
+            builder: (context, orientation) =>
+                orientation == Orientation.portrait
+                    ? showPortraitMode(context)
+                    : showLandscapeMode(context),
           ),
         ),
       ),
     );
   }
 
-  showLandscapeMode(BuildContext context) {
-    notificationCardLandscape!.setMaxLines(null);
-    showDialog(
-      context: context,
-      builder: (context) => Dialog(
-        child: SingleChildScrollView(
-          child: Column(
+  SingleChildScrollView showPortraitMode(BuildContext context) {
+    notificationCardPortrait!.setMaxLines(null);
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            width: responsive.wp(90),
+            height: responsive.hp(60),
+            child: notificationCardPortrait,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                width: responsive.wp(80),
-                height: responsive.hp(80),
-                child: notificationCardLandscape,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text("Cerrar"),
-                    ),
-                  ),
-                ],
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Cerrar"),
+                ),
               ),
             ],
           ),
-        ),
+        ],
+      ),
+    );
+  }
+
+  SingleChildScrollView showLandscapeMode(BuildContext context) {
+    notificationCardLandscape!.setMaxLines(null);
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            width: responsive.wp(80),
+            height: responsive.hp(80),
+            child: notificationCardLandscape,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Cerrar"),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

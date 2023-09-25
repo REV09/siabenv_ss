@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-
-import '../utils/dialog_box.dart';
 import '../utils/responsive.dart';
 import 'widgets/notifications_card_landscape.dart';
 import 'widgets/notifications_card_portrait.dart';
 
-class notificationsPage extends StatefulWidget {
+class NotificationsPage extends StatefulWidget {
+  const NotificationsPage({super.key});
+
   @override
-  State<notificationsPage> createState() => _notificationsPage();
+  State<NotificationsPage> createState() => _NotificationsPage();
 }
 
-class _notificationsPage extends State<notificationsPage> {
+class _NotificationsPage extends State<NotificationsPage> {
   @override
   Widget build(BuildContext context) {
     String information = "Descripcion de prueba de informacion para la tarjeta "
@@ -57,11 +57,36 @@ class _notificationsPage extends State<notificationsPage> {
           child: InkWell(
             child: eventCard,
             onTap: () {
-              DetailsEventPortrait event = DetailsEventPortrait(
-                notificationCardPortrait: eventCard,
-                responsive: responsive,
+              eventCard.setMaxLines(null);
+              showDialog(
+                context: context,
+                builder: (context) => Dialog(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(
+                          width: responsive.wp(90),
+                          height: responsive.hp(60),
+                          child: eventCard,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            SizedBox(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Cerrar"),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               );
-              event.showPortraitMode(context);
             },
           ),
         ),
@@ -106,11 +131,36 @@ class _notificationsPage extends State<notificationsPage> {
           child: InkWell(
             child: eventCard,
             onTap: () {
-              DetailsEventPortrait event = DetailsEventPortrait(
-                notificationCardLandscape: eventCard,
-                responsive: responsive,
+              eventCard.setMaxLines(null);
+              showDialog(
+                context: context,
+                builder: (context) => Dialog(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(
+                          width: responsive.wp(90),
+                          height: responsive.hp(80),
+                          child: eventCard,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            SizedBox(
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Cerrar"),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               );
-              event.showLandscapeMode(context);
             },
           ),
         ),
