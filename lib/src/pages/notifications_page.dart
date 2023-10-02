@@ -70,7 +70,7 @@ class _NotificationsPage extends State<NotificationsPage> {
       eventsListLandscape.add(
         SizedBox(
           width: responsive.wp(60),
-          height: responsive.hp(60),
+          height: responsive.hp(62),
           child: InkWell(
             child: eventCardLandscape,
             onTap: () {
