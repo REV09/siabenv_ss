@@ -18,6 +18,17 @@ class _LoginPageState extends State<LoginPage> {
   bool obscurePassword = true;
   Icon showPasswordIcon = const Icon(Icons.remove_red_eye);
 
+  _validateLogin() {
+    final isValid = _loginKey.currentState?.validate();
+    if (isValid != null && isValid) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const PrincipalPage(),
+        ),
+      );
+    } else {}
+  }
+
   @override
   Widget build(BuildContext context) {
     Responsive responsive = Responsive(context);
@@ -142,6 +153,13 @@ class _LoginPageState extends State<LoginPage> {
                     keyboardType: TextInputType.name,
                     label: "Usuario",
                     helperText: "CURP ej: ABCD123456EFGHIJK",
+                    validator: (text) {
+                      if (text!.trim().length < 18) {
+                        return "Ingrese una CURP valida";
+                      } else {
+                        return null;
+                      }
+                    },
                   ),
                   SizedBox(
                     height: responsive.hp(5),
@@ -156,8 +174,8 @@ class _LoginPageState extends State<LoginPage> {
                           obscureText: obscurePassword,
                           borderEnabled: true,
                           validator: (text) {
-                            if (text!.length < 8) {
-                              return "Ingrese un usuario valido";
+                            if (text!.trim().length < 8) {
+                              return "Ingrese una contraseña valido";
                             } else {
                               return null;
                             }
@@ -171,13 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: responsive.hp(5),
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const PrincipalPage(),
-                        ),
-                      );
-                    },
+                    onPressed: _validateLogin,
                     style: styleLoginButton,
                     child: Text(
                       "Iniciar sesion",
@@ -235,6 +247,13 @@ class _LoginPageState extends State<LoginPage> {
                             keyboardType: TextInputType.name,
                             label: "Usuario",
                             helperText: "CURP ej: ABCD123456EFGHIJK",
+                            validator: (text) {
+                              if (text!.trim().length < 18) {
+                                return "Ingrese una CURP valida";
+                              } else {
+                                return null;
+                              }
+                            },
                           ),
                           SizedBox(
                             height: responsive.wp(2.3),
@@ -249,8 +268,8 @@ class _LoginPageState extends State<LoginPage> {
                                   obscureText: obscurePassword,
                                   borderEnabled: true,
                                   validator: (text) {
-                                    if (text!.length < 8) {
-                                      return "Ingrese un usuario valido";
+                                    if (text!.trim().length < 8) {
+                                      return "Ingrese una contraseña valido";
                                     } else {
                                       return null;
                                     }
@@ -264,13 +283,7 @@ class _LoginPageState extends State<LoginPage> {
                             height: responsive.hp(4),
                           ),
                           ElevatedButton(
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => const PrincipalPage(),
-                                ),
-                              );
-                            },
+                            onPressed: _validateLogin,
                             style: styleLoginButton,
                             child: Text(
                               "Iniciar sesion",
