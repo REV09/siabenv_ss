@@ -59,7 +59,7 @@ class GeneralInformationPage extends StatelessWidget {
                   academicInformationTitles,
                   academicInformationData,
                 )
-              : portraitLandscape(
+              : landscapeView(
                   responsive,
                   titleStyle,
                   personalInformationTitles,
@@ -88,7 +88,7 @@ class GeneralInformationPage extends StatelessWidget {
             SizedBox(height: responsive.hp(1)),
             SizedBox(
               width: responsive.wp(90),
-              height: responsive.hp(67),
+              height: responsive.hp(55),
               child: GeneralInformationCard(
                 titles: personalInformationTitles,
                 information: personalInformationData,
@@ -106,7 +106,7 @@ class GeneralInformationPage extends StatelessWidget {
             SizedBox(height: responsive.hp(1)),
             SizedBox(
               width: responsive.wp(90),
-              height: responsive.hp(47),
+              height: responsive.hp(40),
               child: GeneralInformationCard(
                 titles: academicInformationTitles,
                 information: academicInformationData,
@@ -126,7 +126,7 @@ class GeneralInformationPage extends StatelessWidget {
     );
   }
 
-  Widget portraitLandscape(
+  Widget landscapeView(
     Responsive responsive,
     TextStyle titleStyle,
     List<String> personalInformationTitles,
@@ -148,7 +148,7 @@ class GeneralInformationPage extends StatelessWidget {
                   SizedBox(height: responsive.hp(1)),
                   SizedBox(
                     width: responsive.wp(45),
-                    height: responsive.hp(120),
+                    height: responsive.hp(118),
                     child: GeneralInformationCard(
                       titles: personalInformationTitles,
                       information: personalInformationData,
@@ -170,7 +170,7 @@ class GeneralInformationPage extends StatelessWidget {
                   SizedBox(height: responsive.hp(1)),
                   SizedBox(
                     width: responsive.wp(45),
-                    height: responsive.hp(90),
+                    height: responsive.hp(83),
                     child: GeneralInformationCard(
                       titles: academicInformationTitles,
                       information: academicInformationData,

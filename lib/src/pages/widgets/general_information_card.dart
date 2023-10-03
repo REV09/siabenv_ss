@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mibenv/src/utils/responsive.dart';
 
 class GeneralInformationCard extends StatelessWidget {
   final List<String>? titles;
@@ -14,13 +15,14 @@ class GeneralInformationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextStyle titleStyle = const TextStyle(
-      fontSize: 23,
+    Responsive responsive = Responsive(context);
+    TextStyle titleStyle = TextStyle(
+      fontSize: responsive.dp(2.55),
       fontWeight: FontWeight.bold,
     );
 
-    TextStyle informationStyle = const TextStyle(
-      fontSize: 18,
+    TextStyle informationStyle = TextStyle(
+      fontSize: responsive.dp(1.95),
     );
 
     List<Widget> informationCardContent = List.empty(growable: true);

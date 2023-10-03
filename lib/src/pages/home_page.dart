@@ -12,10 +12,12 @@ class HomePage extends StatefulWidget {
 class _HomePage extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    TextStyle titleStyle = TextStyle(
-        fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue.shade700);
-
     Responsive responsive = Responsive(context);
+
+    TextStyle titleStyle = TextStyle(
+        fontSize: responsive.dp(2.4),
+        fontWeight: FontWeight.bold,
+        color: Colors.blue.shade700);
 
     BoxDecoration decoration = BoxDecoration(
       borderRadius: const BorderRadius.all(Radius.circular(42)),
