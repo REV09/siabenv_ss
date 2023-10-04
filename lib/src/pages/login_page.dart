@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mibenv/src/pages/principal_page.dart';
 import 'package:mibenv/src/pages/widgets/input_text.dart';
+import 'package:mibenv/src/utils/validators.dart';
 
 import '../utils/responsive.dart';
 
@@ -155,10 +156,15 @@ class _LoginPageState extends State<LoginPage> {
                     helperText: "CURP ej: ABCD123456EFGHIJK",
                     validator: (text) {
                       if (text!.trim().length < 18) {
-                        return "Ingrese una CURP valida";
-                      } else {
-                        return null;
+                        return "Ingresa una curp completa";
                       }
+                      if (text.contains(" ")) {
+                        return "No incluyas espacios en blanco";
+                      }
+                      if (!curpValidator(text)) {
+                        "CURP invalida";
+                      }
+                      return null;
                     },
                   ),
                   SizedBox(
@@ -175,10 +181,15 @@ class _LoginPageState extends State<LoginPage> {
                           borderEnabled: true,
                           validator: (text) {
                             if (text!.trim().length < 8) {
-                              return "Ingrese una contraseña valido";
-                            } else {
-                              return null;
+                              return "La contraseña es muy corta";
                             }
+                            if (text.contains(" ")) {
+                              return "No ingreses espacios";
+                            }
+                            if (validatePassword(text)) {
+                              return "Caracteres especiales no validos";
+                            }
+                            return null;
                           },
                           suffixIcon: showHidePasswordButton,
                         ),
@@ -249,10 +260,15 @@ class _LoginPageState extends State<LoginPage> {
                             helperText: "CURP ej: ABCD123456EFGHIJK",
                             validator: (text) {
                               if (text!.trim().length < 18) {
-                                return "Ingrese una CURP valida";
-                              } else {
-                                return null;
+                                return "Ingresa una curp completa";
                               }
+                              if (text.contains(" ")) {
+                                return "No incluyas espacios en blanco";
+                              }
+                              if (!curpValidator(text)) {
+                                "CURP invalida";
+                              }
+                              return null;
                             },
                           ),
                           SizedBox(
@@ -269,10 +285,15 @@ class _LoginPageState extends State<LoginPage> {
                                   borderEnabled: true,
                                   validator: (text) {
                                     if (text!.trim().length < 8) {
-                                      return "Ingrese una contraseña valido";
-                                    } else {
-                                      return null;
+                                      return "La contraseña es muy corta";
                                     }
+                                    if (text.contains(" ")) {
+                                      return "No ingreses espacios";
+                                    }
+                                    if (validatePassword(text)) {
+                                      return "Caracteres especiales no validos";
+                                    }
+                                    return null;
                                   },
                                   suffixIcon: showHidePasswordButton,
                                 ),
