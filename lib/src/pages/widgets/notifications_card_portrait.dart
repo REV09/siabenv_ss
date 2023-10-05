@@ -41,6 +41,7 @@ class NotificationCardPortrait extends StatelessWidget {
           style: titleStyle,
         ),
         Container(
+          //if we don't use Container the text won't fit in the card
           width: width,
           child: Text(
             information!,
