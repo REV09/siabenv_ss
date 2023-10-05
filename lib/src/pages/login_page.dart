@@ -154,6 +154,9 @@ class _LoginPageState extends State<LoginPage> {
                     keyboardType: TextInputType.name,
                     label: "Usuario",
                     helperText: "CURP ej: ABCD123456EFGHIJK",
+                    onChanged: (text) {
+                      text = text.toUpperCase();
+                    },
                     validator: (text) {
                       if (text!.trim().length < 18) {
                         return "Ingresa una curp completa";
@@ -258,6 +261,9 @@ class _LoginPageState extends State<LoginPage> {
                             keyboardType: TextInputType.name,
                             label: "Usuario",
                             helperText: "CURP ej: ABCD123456EFGHIJK",
+                            onChanged: (text) {
+                              text = text.toUpperCase();
+                            },
                             validator: (text) {
                               if (text!.trim().length < 18) {
                                 return "Ingresa una curp completa";

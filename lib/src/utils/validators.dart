@@ -1,6 +1,5 @@
 bool curpValidator(String curp) {
-  RegExp textValidator =
-      RegExp("([A-Za-z]{4})([0-9]{6})([A-Za-z]{6,7})([0-9]{1,2})");
+  RegExp textValidator = RegExp("[A-Z0-9]");
   return textValidator.hasMatch(curp);
 }
 
