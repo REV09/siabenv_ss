@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:mibenv/src/domain/notification_class.dart';
 import 'package:mibenv/src/utils/responsive.dart';
 
 class NotificationCardLandscape extends StatelessWidget {
-  final String? title;
-  final String? information;
+  final NotificationEvent? notificationEvent;
   final ShapeBorder? shapeBorder;
   final double width;
   int? maxLines;
 
   NotificationCardLandscape({
     Key? key,
-    this.title,
-    this.information,
+    this.notificationEvent,
     this.shapeBorder,
     required this.width,
   }) : super(key: key);
@@ -39,7 +38,7 @@ class NotificationCardLandscape extends StatelessWidget {
           Icons.access_time,
           size: 40,
         ),
-        Text("13:00 - 15:00", style: informationStyle),
+        Text(notificationEvent!.getSchedule(), style: informationStyle),
       ],
     );
 
@@ -47,14 +46,14 @@ class NotificationCardLandscape extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         const SizedBox(height: 10),
-        Text("Lunes 22 de enero de 2024", style: titleStyle),
+        Text(notificationEvent!.getEventDate(), style: titleStyle),
         dateRow,
-        Text(title!, style: titleStyle),
+        Text(notificationEvent!.getTitle(), style: titleStyle),
         Container(
           padding: const EdgeInsets.fromLTRB(8, 0, 5, 0),
           width: width,
           child: Text(
-            information!,
+            notificationEvent!.getDescription(),
             style: informationStyle,
             overflow: TextOverflow.clip,
             softWrap: true,

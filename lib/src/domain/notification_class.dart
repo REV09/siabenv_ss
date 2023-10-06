@@ -1,20 +1,23 @@
-class Notification {
+class NotificationEvent {
   String title;
   String description;
   String eventDate;
   String schedule;
+  bool type;
 
-  Notification({
+  NotificationEvent({
     required this.title,
     required this.description,
     required this.eventDate,
     required this.schedule,
+    required this.type,
   });
-  Notification.emptyNotification({
+  NotificationEvent.emptyNotificationEvent({
     this.title = "",
     this.description = "",
     this.eventDate = "",
     this.schedule = "",
+    this.type = false,
   });
 
   void setTitle(String title) {
@@ -38,11 +41,13 @@ class Notification {
   String getEventDate() => eventDate;
   String getSchedule() => schedule;
 
-  factory Notification.fromJson(Map<String, dynamic> json) => Notification(
+  factory NotificationEvent.fromJson(Map<String, dynamic> json) =>
+      NotificationEvent(
         title: json["title"],
         description: json["description"],
         eventDate: json["eventDate"],
         schedule: json["schedule"],
+        type: json["type"],
       );
 
   Map<String, dynamic> toJson() => {

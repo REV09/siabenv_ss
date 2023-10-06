@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mibenv/src/domain/student_class.dart';
 import 'package:mibenv/src/pages/widgets/general_information_card.dart';
 
 import '../utils/responsive.dart';
@@ -17,27 +18,24 @@ class GeneralInformationPage extends StatelessWidget {
       "Genero",
     ];
 
-    List<String> personalInformationData = [
-      "Nombre completo de prueba",
-      "alguienexample@ejemplo.com",
-      "prueba@example.com.mx",
-      "ABCD123456EFGHIJK0",
-      "00/00/0000",
-      "Genero",
-    ];
+    Student student = Student(
+      name: "Nombre completo de prueba",
+      email: "alguienexample@ejemplo.com",
+      alternativeEmail: "prueba@example.com.mx",
+      curp: "ABCD123456EFGHIJK0",
+      bornDate: "00/00/0000",
+      gender: true,
+      tutor: "Nombre de tutor de prueba",
+      degree: "Nombre de programa de prueba",
+      area: "Educacion especial",
+      level: "Licenciatura",
+    );
 
     List<String> academicInformationTitles = [
       "Tutor academico",
       "Licenciatura",
       "Area",
       "Nivel",
-    ];
-
-    List<String> academicInformationData = [
-      "Nombre de tutor de prueba",
-      "Nombre de programa de prueba",
-      "Educacion especial",
-      "Licenciatura",
     ];
 
     Responsive responsive = Responsive(context);
@@ -50,34 +48,44 @@ class GeneralInformationPage extends StatelessWidget {
 
     return Center(
       child: OrientationBuilder(
-          builder: (context, orientation) => orientation == Orientation.portrait
-              ? portraitView(
-                  responsive,
-                  titleStyle,
-                  personalInformationTitles,
-                  personalInformationData,
-                  academicInformationTitles,
-                  academicInformationData,
-                )
-              : landscapeView(
-                  responsive,
-                  titleStyle,
-                  personalInformationTitles,
-                  personalInformationData,
-                  academicInformationTitles,
-                  academicInformationData,
-                )),
+        builder: (context, orientation) => orientation == Orientation.portrait
+            ? portraitView(
+                responsive,
+                titleStyle,
+                personalInformationTitles,
+                academicInformationTitles,
+                student,
+              )
+            : landscapeView(
+                responsive,
+                titleStyle,
+                personalInformationTitles,
+                academicInformationTitles,
+                student,
+              ),
+      ),
     );
   }
 
   Widget portraitView(
-    Responsive responsive,
-    TextStyle titleStyle,
-    List<String> personalInformationTitles,
-    List<String> personalInformationData,
-    List<String> academicInformationTitles,
-    List<String> academicInformationData,
-  ) {
+      Responsive responsive,
+      TextStyle titleStyle,
+      List<String> personalInformationTitles,
+      List<String> academicInformationTitles,
+      Student student) {
+    List<String> academicInformation = List.empty(growable: true);
+    academicInformation.add(student.getTutor());
+    academicInformation.add(student.getDegree());
+    academicInformation.add(student.getArea());
+    academicInformation.add(student.getLevel());
+    List<String> personalInformation = List.empty(growable: true);
+    personalInformation.add(student.getName());
+    personalInformation.add(student.getEmail());
+    personalInformation.add(student.getAlternativeEmail());
+    personalInformation.add(student.getCurp());
+    personalInformation.add(student.getBornDate());
+    personalInformation.add(student.getGengerText());
+
     return Center(
       child: SingleChildScrollView(
         child: Column(
@@ -91,7 +99,7 @@ class GeneralInformationPage extends StatelessWidget {
               height: responsive.hp(55),
               child: GeneralInformationCard(
                 titles: personalInformationTitles,
-                information: personalInformationData,
+                information: personalInformation,
                 shapeBorder: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                   side: const BorderSide(
@@ -109,7 +117,7 @@ class GeneralInformationPage extends StatelessWidget {
               height: responsive.hp(40),
               child: GeneralInformationCard(
                 titles: academicInformationTitles,
-                information: academicInformationData,
+                information: academicInformation,
                 shapeBorder: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                   side: const BorderSide(
@@ -127,13 +135,23 @@ class GeneralInformationPage extends StatelessWidget {
   }
 
   Widget landscapeView(
-    Responsive responsive,
-    TextStyle titleStyle,
-    List<String> personalInformationTitles,
-    List<String> personalInformationData,
-    List<String> academicInformationTitles,
-    List<String> academicInformationData,
-  ) {
+      Responsive responsive,
+      TextStyle titleStyle,
+      List<String> personalInformationTitles,
+      List<String> academicInformationTitles,
+      Student student) {
+    List<String> academicInformation = List.empty(growable: true);
+    academicInformation.add(student.getTutor());
+    academicInformation.add(student.getDegree());
+    academicInformation.add(student.getArea());
+    academicInformation.add(student.getLevel());
+    List<String> personalInformation = List.empty(growable: true);
+    personalInformation.add(student.getName());
+    personalInformation.add(student.getEmail());
+    personalInformation.add(student.getAlternativeEmail());
+    personalInformation.add(student.getCurp());
+    personalInformation.add(student.getBornDate());
+    personalInformation.add(student.getGengerText());
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -151,7 +169,7 @@ class GeneralInformationPage extends StatelessWidget {
                     height: responsive.hp(118),
                     child: GeneralInformationCard(
                       titles: personalInformationTitles,
-                      information: personalInformationData,
+                      information: personalInformation,
                       shapeBorder: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                         side: const BorderSide(
@@ -173,7 +191,7 @@ class GeneralInformationPage extends StatelessWidget {
                     height: responsive.hp(83),
                     child: GeneralInformationCard(
                       titles: academicInformationTitles,
-                      information: academicInformationData,
+                      information: academicInformation,
                       shapeBorder: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                         side: const BorderSide(

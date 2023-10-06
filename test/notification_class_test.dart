@@ -3,25 +3,29 @@ import 'package:mibenv/src/domain/notification_class.dart';
 
 void main() {
   test("Prueba de unidad de metodos setTitle y getTitle", () {
-    Notification eventNotification = Notification.emptyNotification();
+    NotificationEvent eventNotification =
+        NotificationEvent.emptyNotificationEvent();
     eventNotification.setTitle("Titulo de prueba");
     expect(eventNotification.getTitle(), "Titulo de prueba");
   });
 
   test("Prueba de unidad de metodos setDescription y getDescription", () {
-    Notification eventNotification = Notification.emptyNotification();
+    NotificationEvent eventNotification =
+        NotificationEvent.emptyNotificationEvent();
     eventNotification.setDescription("Descripcion de prueba");
     expect(eventNotification.getDescription(), "Descripcion de prueba");
   });
 
   test("Prueba de unidad de metodos setEventDate y getEventDate", () {
-    Notification eventNotification = Notification.emptyNotification();
+    NotificationEvent eventNotification =
+        NotificationEvent.emptyNotificationEvent();
     eventNotification.setEventDate("28 de octubre de 2023");
     expect(eventNotification.getEventDate(), "28 de octubre de 2023");
   });
 
   test("Prueba de unidad de metodos setSchedule y getSchedule", () {
-    Notification eventNotification = Notification.emptyNotification();
+    NotificationEvent eventNotification =
+        NotificationEvent.emptyNotificationEvent();
     eventNotification.setSchedule("12:00 - 16:00");
     expect(eventNotification.getSchedule(), "12:00 - 16:00");
   });
@@ -34,7 +38,7 @@ void main() {
       "schedule": "12:00 - 16:00",
     };
     List<bool> validations = List.empty(growable: true);
-    Notification eventNotification = Notification.fromJson(jsonEvent);
+    NotificationEvent eventNotification = NotificationEvent.fromJson(jsonEvent);
     validations
         .add(eventNotification.getTitle() == "Titulo de prueba" ? true : false);
     validations.add(
@@ -62,11 +66,12 @@ void main() {
   });
 
   test("Prueba de unidad del metodo toJson", () {
-    Notification eventNotification = Notification(
+    NotificationEvent eventNotification = NotificationEvent(
         title: "Titulo de prueba",
         description: "Descripcion de prueba",
         eventDate: "28 de octubre de 2023",
-        schedule: "12:00 - 16:00");
+        schedule: "12:00 - 16:00",
+        type: true);
     Map<String, dynamic> jsonEvent = eventNotification.toJson();
     bool validateJson = false;
     if (jsonEvent["title"] == "Titulo de prueba" &&

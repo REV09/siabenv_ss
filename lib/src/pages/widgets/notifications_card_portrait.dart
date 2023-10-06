@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:mibenv/src/domain/notification_class.dart';
 
 import '../../utils/responsive.dart';
 
 class NotificationCardPortrait extends StatelessWidget {
-  final String? title;
-  final String? information;
+  final NotificationEvent? notificationEvent;
   final ShapeBorder? shapeBorder;
   final double width;
   int? maxLines;
 
   NotificationCardPortrait({
     Key? key,
-    this.title,
-    this.information,
+    this.notificationEvent,
     this.shapeBorder,
     required this.width,
   }) : super(key: key);
@@ -37,14 +36,14 @@ class NotificationCardPortrait extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          title!,
+          notificationEvent!.getTitle(),
           style: titleStyle,
         ),
         Container(
           //if we don't use Container the text won't fit in the card
           width: width,
           child: Text(
-            information!,
+            notificationEvent!.getDescription(),
             style: informationStyle,
             overflow: TextOverflow.clip,
             softWrap: true,
@@ -59,9 +58,11 @@ class NotificationCardPortrait extends StatelessWidget {
           Icons.access_time,
           size: 50,
         ),
-        Text("14:00", style: informationStyle),
+        Text(notificationEvent!.getSchedule().split("-")[0],
+            style: informationStyle),
         const SizedBox(height: 10),
-        Text("16:00", style: informationStyle),
+        Text(notificationEvent!.getSchedule().split("-")[1],
+            style: informationStyle),
       ],
     );
 
@@ -78,7 +79,7 @@ class NotificationCardPortrait extends StatelessWidget {
       children: <Widget>[
         const SizedBox(height: 10),
         Text(
-          "Lunes 22 de enero de 2024",
+          notificationEvent!.getEventDate(),
           style: titleStyle,
         ),
         rowAlingment,

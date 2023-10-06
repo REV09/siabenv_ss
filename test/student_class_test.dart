@@ -90,4 +90,33 @@ void main() {
     }
     expect(validStudent, true);
   });
+
+  test("Prueba de unidad del metodo toJson", () {
+    Student student = Student(
+        name: "Hector David Madrid Rivera",
+        email: "alguien.example@hotmail.com",
+        alternativeEmail: "alguien.example@hotmail.com",
+        curp: "MARH001028HVZDVCA2",
+        bornDate: "28/10/2000",
+        gender: true,
+        tutor: "Jorge Octavio Ocharan Hernandez",
+        degree: "Licenciatura en Educacion fisica",
+        area: "Educacion especial",
+        level: "Licenciatura");
+    Map<String, dynamic> jsonStudent = student.toJson();
+    bool finalValidation = false;
+    if (jsonStudent["name"] == "Hector David Madrid Rivera" &&
+        jsonStudent["email"] == "alguien.example@hotmail.com" &&
+        jsonStudent["alternativeEmail"] == "alguien.example@hotmail.com" &&
+        jsonStudent["curp"] == "MARH001028HVZDVCA2" &&
+        jsonStudent["bornDate"] == "28/10/2000" &&
+        jsonStudent["gender"] == true &&
+        jsonStudent["tutor"] == "Jorge Octavio Ocharan Hernandez" &&
+        jsonStudent["degree"] == "Licenciatura en Educacion fisica" &&
+        jsonStudent["area"] == "Educacion especial" &&
+        jsonStudent["level"] == "Licenciatura") {
+      finalValidation = true;
+    }
+    expect(finalValidation, true);
+  });
 }

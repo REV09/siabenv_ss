@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:mibenv/src/domain/notification_class.dart';
 import 'package:mibenv/src/utils/responsive.dart';
 import 'widgets/notifications_card_landscape.dart';
 import 'widgets/notifications_card_portrait.dart';
 
 class EventDetailsPage extends StatefulWidget {
-  String title;
-  String information;
+  NotificationEvent notificationEvent;
 
   EventDetailsPage({
     super.key,
-    required this.title,
-    required this.information,
+    required this.notificationEvent,
   });
 
   @override
@@ -34,8 +33,7 @@ class _EventDetailsPage extends State<EventDetailsPage> {
 
   portraitView(Responsive responsive) {
     NotificationCardPortrait eventCardPortrait = NotificationCardPortrait(
-      information: widget.information,
-      title: widget.title,
+      notificationEvent: widget.notificationEvent,
       width: responsive.wp(60),
     );
 
@@ -66,8 +64,7 @@ class _EventDetailsPage extends State<EventDetailsPage> {
 
   landscapeView(Responsive responsive) {
     NotificationCardLandscape eventCardLandscape = NotificationCardLandscape(
-      information: widget.information,
-      title: widget.title,
+      notificationEvent: widget.notificationEvent,
       width: responsive.wp(70),
     );
     return Column(

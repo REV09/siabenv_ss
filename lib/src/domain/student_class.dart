@@ -86,6 +86,7 @@ class Student {
   String getDegree() => degree;
   String getArea() => area;
   String getLevel() => level;
+  String getGengerText() => gender == true ? "Hombre" : "Mujer";
 
   factory Student.fromJson(Map<String, dynamic> json) => Student(
         name: json["name"],

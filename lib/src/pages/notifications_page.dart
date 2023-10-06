@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mibenv/src/domain/notification_class.dart';
 import 'package:mibenv/src/pages/event_details_page.dart';
 import '../utils/responsive.dart';
 import 'widgets/notifications_card_landscape.dart';
@@ -24,6 +25,16 @@ class _NotificationsPage extends State<NotificationsPage> {
         " en teoria esto ya deberia ser suficiente para poder ajustarlo a la"
         " tarjeta y que no se pueda visualizar completo";
     String title = "Evento de prueba";
+    String eventDate = "28 de octubre de 2023";
+    String scheduleEvent = "14:00-17:00";
+    bool type = false;
+
+    NotificationEvent notificationEvent = NotificationEvent(
+        title: title,
+        description: information,
+        eventDate: eventDate,
+        schedule: scheduleEvent,
+        type: type);
 
     Responsive responsive = Responsive(context);
 
@@ -34,14 +45,12 @@ class _NotificationsPage extends State<NotificationsPage> {
     eventsListLandscape.add(SizedBox(height: responsive.hp(8)));
     for (int i = 0; i < 5; i++) {
       NotificationCardLandscape eventCardLandscape = NotificationCardLandscape(
-        information: information,
-        title: title,
+        notificationEvent: notificationEvent,
         width: responsive.wp(70),
       );
 
       NotificationCardPortrait eventCardPortrait = NotificationCardPortrait(
-        information: information,
-        title: title,
+        notificationEvent: notificationEvent,
         width: responsive.wp(60),
       );
       eventCardPortrait.setMaxLines(6);
@@ -57,8 +66,7 @@ class _NotificationsPage extends State<NotificationsPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => EventDetailsPage(
-                    title: title,
-                    information: information,
+                    notificationEvent: notificationEvent,
                   ),
                 ),
               );
@@ -77,8 +85,7 @@ class _NotificationsPage extends State<NotificationsPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => EventDetailsPage(
-                    title: title,
-                    information: information,
+                    notificationEvent: notificationEvent,
                   ),
                 ),
               );
