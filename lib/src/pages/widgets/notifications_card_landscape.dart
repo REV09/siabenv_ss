@@ -65,6 +65,9 @@ class NotificationCardLandscape extends StatelessWidget {
 
     return Card(
       shadowColor: Colors.black,
+      color: notificationEvent!.getType() == true
+          ? Colors.orange.shade500
+          : Colors.white,
       elevation: 14,
       shape: shapeBorder,
       child: cardContent,

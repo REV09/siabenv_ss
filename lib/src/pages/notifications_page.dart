@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mibenv/src/domain/notification_class.dart';
 import 'package:mibenv/src/pages/event_details_page.dart';
@@ -27,15 +29,6 @@ class _NotificationsPage extends State<NotificationsPage> {
     String title = "Evento de prueba";
     String eventDate = "28 de octubre de 2023";
     String scheduleEvent = "14:00-17:00";
-    bool type = false;
-
-    NotificationEvent notificationEvent = NotificationEvent(
-        title: title,
-        description: information,
-        eventDate: eventDate,
-        schedule: scheduleEvent,
-        type: type);
-
     Responsive responsive = Responsive(context);
 
     eventsListPortrait.clear();
@@ -43,7 +36,18 @@ class _NotificationsPage extends State<NotificationsPage> {
 
     eventsListPortrait.add(SizedBox(height: responsive.hp(8)));
     eventsListLandscape.add(SizedBox(height: responsive.hp(8)));
+    Random randomGenerator = Random();
     for (int i = 0; i < 5; i++) {
+      bool typeEvent = randomGenerator.nextBool();
+
+      NotificationEvent notificationEvent = NotificationEvent(
+        title: title,
+        description: information,
+        eventDate: eventDate,
+        schedule: scheduleEvent,
+        type: typeEvent,
+      );
+
       NotificationCardLandscape eventCardLandscape = NotificationCardLandscape(
         notificationEvent: notificationEvent,
         width: responsive.wp(70),

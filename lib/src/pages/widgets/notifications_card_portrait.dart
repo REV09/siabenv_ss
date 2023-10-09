@@ -88,6 +88,9 @@ class NotificationCardPortrait extends StatelessWidget {
 
     return Card(
       shadowColor: Colors.black,
+      color: notificationEvent!.getType() == true
+          ? Colors.orange.shade500
+          : Colors.white,
       elevation: 15,
       shape: shapeBorder,
       child: dateColumn,

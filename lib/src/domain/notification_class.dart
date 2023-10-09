@@ -36,10 +36,15 @@ class NotificationEvent {
     this.schedule = schedule;
   }
 
+  void setType(bool type) {
+    this.type = type;
+  }
+
   String getTitle() => title;
   String getDescription() => description;
   String getEventDate() => eventDate;
   String getSchedule() => schedule;
+  bool getType() => type;
 
   factory NotificationEvent.fromJson(Map<String, dynamic> json) =>
       NotificationEvent(
