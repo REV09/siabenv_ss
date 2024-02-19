@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mibenv/src/pages/principal_page.dart';
+import 'package:mibenv/src/pages/widgets/alert_dialog_box.dart';
 import 'package:mibenv/src/pages/widgets/input_text.dart';
 import 'package:mibenv/src/utils/validators.dart';
 
@@ -27,7 +28,14 @@ class _LoginPageState extends State<LoginPage> {
           builder: (context) => const PrincipalPage(),
         ),
       );
-    } else {}
+    } else {
+      AlertDialogBox.showAlertDialog(
+        context,
+        "Sesion no valida",
+        "Inicio de sesion incorrecto, verifique que los datos "
+            "ingresados sean correctos",
+      );
+    }
   }
 
   @override
@@ -43,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
     TextStyle loginButtonLandscape = TextStyle(
       color: Colors.white,
       fontWeight: FontWeight.bold,
-      fontSize: responsive.hp(4.6),
+      fontSize: responsive.hp(4.4),
     );
 
     ButtonStyle styleLoginButtonPortrait = ElevatedButton.styleFrom(
@@ -58,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Colors.green.shade700,
       fixedSize: Size(
         responsive.wp(25),
-        responsive.hp(0),
+        responsive.hp(6),
       ),
     );
 

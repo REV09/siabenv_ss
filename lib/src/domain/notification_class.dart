@@ -60,5 +60,6 @@ class NotificationEvent {
         "description": description,
         "eventDate": eventDate,
         "schedule": schedule,
+        "type": type,
       };
 }

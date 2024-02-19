@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mibenv/src/domain/student_class.dart';
 import 'package:mibenv/src/pages/widgets/general_information_card.dart';
+import 'package:mibenv/src/services/services_rest_student.dart';
 
 import '../utils/responsive.dart';
 
@@ -18,19 +19,6 @@ class GeneralInformationPage extends StatelessWidget {
       "Genero",
     ];
 
-    Student student = Student(
-      name: "Nombre completo de prueba",
-      email: "alguienexample@ejemplo.com",
-      alternativeEmail: "prueba@example.com.mx",
-      curp: "ABCD123456EFGHIJK0",
-      bornDate: "00/00/0000",
-      gender: true,
-      tutor: "Nombre de tutor de prueba",
-      degree: "Nombre de programa de prueba",
-      area: "Educacion especial",
-      level: "Licenciatura",
-    );
-
     List<String> academicInformationTitles = [
       "Tutor academico",
       "Licenciatura",
@@ -46,24 +34,72 @@ class GeneralInformationPage extends StatelessWidget {
       color: Colors.blue.shade900,
     );
 
-    return Center(
-      child: OrientationBuilder(
-        builder: (context, orientation) => orientation == Orientation.portrait
-            ? portraitView(
-                responsive,
-                titleStyle,
-                personalInformationTitles,
-                academicInformationTitles,
-                student,
-              )
-            : landscapeView(
-                responsive,
-                titleStyle,
-                personalInformationTitles,
-                academicInformationTitles,
-                student,
-              ),
+    TextStyle noAvailableStyle = const TextStyle(
+      fontSize: 25,
+      color: Colors.black,
+    );
+
+    TextStyle reloadTextStyle = const TextStyle(
+      fontSize: 18,
+      color: Colors.white,
+    );
+
+    ButtonStyle reloadButtonStyle = ElevatedButton.styleFrom(
+      backgroundColor: Colors.blue.shade900,
+      fixedSize: Size(
+        responsive.wp(46),
+        responsive.hp(6.5),
       ),
+    );
+
+    ServiceRestStudent serviceRestStudent = ServiceRestStudent();
+
+    return FutureBuilder(
+      future: serviceRestStudent.giveStudentInformation(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData && snapshot.data!.getName() != "") {
+          Student student = snapshot.data!;
+          return Center(
+            child: OrientationBuilder(
+              builder: (context, orientation) =>
+                  orientation == Orientation.portrait
+                      ? portraitView(
+                          responsive,
+                          titleStyle,
+                          personalInformationTitles,
+                          academicInformationTitles,
+                          student,
+                        )
+                      : landscapeView(
+                          responsive,
+                          titleStyle,
+                          personalInformationTitles,
+                          academicInformationTitles,
+                          student,
+                        ),
+            ),
+          );
+        } else {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "La informacion no se encuentra disponible en este momento",
+                  style: noAvailableStyle,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: responsive.hp(4)),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: reloadButtonStyle,
+                  child: Text("Recargar", style: reloadTextStyle),
+                )
+              ],
+            ),
+          );
+        }
+      },
     );
   }
 
